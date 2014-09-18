@@ -2,14 +2,17 @@ var test = require('tap').test
 var wrappy = require('../wrappy.js')
 
 test('basic', function (t) {
-  var once = wrappy(function (cb) {
+  function onceifier (cb) {
     var called = false
     return function () {
       if (called) return
       called = true
       return cb.apply(this, arguments)
     }
-  })
+  }
+  onceifier.iAmOnce = {}
+  var once = wrappy(onceifier)
+  t.equal(once.iAmOnce, onceifier.iAmOnce)
 
   var called = 0
   function boo () {

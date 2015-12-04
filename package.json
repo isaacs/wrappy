@@ -8,10 +8,10 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "tap": "^1.2.0"
+    "tap": "^2.3.1"
   },
   "scripts": {
-    "test": "tap test/*.js"
+    "test": "tap --coverage test/*.js"
   },
   "repository": {
     "type": "git",

@@ -3,6 +3,9 @@
   "version": "1.0.1",
   "description": "Callback wrapping utility",
   "main": "wrappy.js",
+  "files": [
+    "wrappy.js"
+  ],
   "directories": {
     "test": "test"
   },

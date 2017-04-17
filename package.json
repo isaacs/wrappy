@@ -16,6 +16,9 @@
   "scripts": {
     "test": "tap --coverage test/*.js"
   },
+  "files": [
+    "wrappy.js"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/npm/wrappy"

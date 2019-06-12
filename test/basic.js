@@ -36,7 +36,7 @@ test('basic', function (t) {
     logs.push(msg + ' wrapping cb')
     return function () {
       logs.push(msg + ' before cb')
-      var ret = cb.apply(this, arguments)
+      cb.apply(this, arguments)
       logs.push(msg + ' after cb')
     }
   })

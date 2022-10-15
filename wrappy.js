@@ -5,10 +5,13 @@
 // decorations and such are not lost along the way.
 module.exports = wrappy
 function wrappy (fn, cb) {
-  if (fn && cb) return wrappy(fn)(cb)
+  if (fn && cb) {
+    return wrappy(fn)(cb)
+  }
 
-  if (typeof fn !== 'function')
+  if (typeof fn !== 'function') {
     throw new TypeError('need wrapper function')
+  }
 
   Object.keys(fn).forEach(function (k) {
     wrapper[k] = fn[k]
@@ -16,7 +19,7 @@ function wrappy (fn, cb) {
 
   return wrapper
 
-  function wrapper() {
+  function wrapper () {
     var ret = fn.apply(this, arguments)
     var cb = arguments[arguments.length - 1]
     if (typeof ret === 'function' && ret !== cb) {

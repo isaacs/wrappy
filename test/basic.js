@@ -5,7 +5,9 @@ test('basic', function (t) {
   function onceifier (cb) {
     var called = false
     return function () {
-      if (called) return
+      if (called) {
+        return
+      }
       called = true
       return cb.apply(this, arguments)
     }
@@ -42,10 +44,10 @@ test('basic', function (t) {
   })
 
   var c = logwrap('foo', function () {
-    t.same(logs, [ 'foo wrapping cb', 'foo before cb' ])
+    t.same(logs, ['foo wrapping cb', 'foo before cb'])
   })
   c()
-  t.same(logs, [ 'foo wrapping cb', 'foo before cb', 'foo after cb' ])
+  t.same(logs, ['foo wrapping cb', 'foo before cb', 'foo after cb'])
 
   t.end()
 })

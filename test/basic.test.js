@@ -49,3 +49,29 @@ test('basic', function (t) {
 
   t.end()
 })
+
+test('will call wrappy with the callback', (t) => {
+  t.plan(1)
+  const logs = []
+  const once = wrappy((cb) => {
+    let called = false
+    return () => {
+      if (called) return
+      called = true
+      cb(this, arguments)
+    }
+  }, () => logs.push('called'))
+  once()
+  once()
+  t.same(logs, ['called'])
+
+  t.end()
+})
+
+test('will throw when missing a function', (t) => {
+  t.plan(1)
+  t.throws(() => {
+    wrappy()
+  }, TypeError, 'need wrapper function')
+  t.end()
+})

@@ -1,3 +1,30 @@
 node_modules/
 .nyc_output/
 coverage/
+.tap
+.idea
+
+# Yarn Integrity file
+.yarn-integrity
+
+# yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# lock files
+bun.lockb
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# log files
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*

@@ -49,3 +49,22 @@ test('basic', function (t) {
 
   t.end()
 })
+
+test('zero-arg wrapper when fn returns a function (#13)', function (t) {
+  var sentinel = function returned() {}
+  sentinel.mark = true
+  var wrap = wrappy(function () { return sentinel })
+
+  // previously: TypeError Cannot convert undefined or null to object
+  var out = wrap()
+  t.equal(out, sentinel)
+  t.equal(out.mark, true)
+
+  // still copies properties from a provided callback
+  function cb() {}
+  cb.fromCb = 1
+  var out2 = wrap(cb)
+  t.equal(out2, sentinel)
+  t.equal(out2.fromCb, 1)
+  t.end()
+})

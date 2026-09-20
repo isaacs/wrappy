@@ -19,7 +19,10 @@ function wrappy (fn, cb) {
   function wrapper() {
     var ret = fn.apply(this, arguments)
     var cb = arguments[arguments.length - 1]
-    if (typeof ret === 'function' && ret !== cb) {
+    // Only copy properties when a callback argument is present.
+    // Zero-arg calls leave arguments[-1] as undefined and would throw
+    // on Object.keys(undefined) when fn returns a function (#13).
+    if (typeof ret === 'function' && typeof cb === 'function' && ret !== cb) {
       Object.keys(cb).forEach(function (k) {
         ret[k] = cb[k]
       })

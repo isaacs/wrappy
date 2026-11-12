@@ -19,7 +19,9 @@ function wrappy (fn, cb) {
   function wrapper() {
     var ret = fn.apply(this, arguments)
     var cb = arguments[arguments.length - 1]
-    if (typeof ret === 'function' && ret !== cb) {
+    // A missing callback is undefined (arguments[-1]). null and undefined
+    // have no own properties, and Object.keys throws on them.
+    if (typeof ret === 'function' && ret !== cb && cb != null) {
       Object.keys(cb).forEach(function (k) {
         ret[k] = cb[k]
       })
